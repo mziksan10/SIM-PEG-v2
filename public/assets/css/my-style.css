@@ -1,0 +1,63 @@
+.auth-background {
+  background-image: url("/assets/img/gedung-piksi-gray.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  }
+
+.login-image {
+  background-image: url("/assets/img/bg_login.jpg");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  }
+  
+.register-image {
+  background-image: url("/assets/img/bg_register.jpg");
+  background-position: center;
+  background-size: 75%;
+  background-repeat: no-repeat;
+  }
+
+.my-font-white {
+  color: white;
+}
+
+.ui-menu{
+  z-index: 3000 !important;
+}
+
+.flash {
+  -webkit-animation: flash 2s infinite;  /* Safari 4+ */
+  -moz-animation: flash 2s infinite;  /* Fx 5+ */
+  -o-animation: flash 2s infinite;  /* Opera 12+ */
+  animation: flash 2s infinite;  /* IE 10+, Fx 29+ */
+}
+
+@-webkit-keyframes flash {
+  50%, 100% {
+    background-color: #d9534f;
+    color: white;
+  }
+}
+
+.icon-cog {
+  color: #0275d8;
+}
+
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: #fff;
+}
+.loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  font: 14px arial;
+}
