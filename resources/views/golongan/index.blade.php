@@ -99,9 +99,8 @@
                                                         <td style="text-align: center">{{ $item->jenjang }}</td>
                                                         <td style="text-align: center">@if($item->max_masa_kerja !== null) {{ $item->min_masa_kerja . ' - ' . $item->max_masa_kerja }} @else {{ $item->min_masa_kerja }} @endif Tahun</td>
                                                         <td style="text-align: center">
-                                                            <button class="btn btn-sm" data-toggle="modal" data-target="#showModal{{ $item->id }}"><i class="fas fa-eye fa-sm text-primary"></i> Show</button>
-                                                            |
-                                                            <button class="btn btn-sm" data-toggle="modal" data-target="#editModal{{ $item->id }}"><i class="fas fa-edit fa-sm text-warning"></i> Edit</button>
+                                                            <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#showModal{{ $item->id }}"><i class="fas fa-eye fa-sm text-primary"></i></button>
+                                                            <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#editModal{{ $item->id }}"><i class="fas fa-edit fa-sm text-warning"></i></button>
                                                         </td>
                                                     </tr>
                                                     @endif

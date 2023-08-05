@@ -147,12 +147,9 @@
     </div> -->
 
     <div class="text-center d-none d-md-inline">
-        <form action="/logout" method="POST">
-            @csrf
-            <button class="btn-circle btn-light border-0" type="submit">
-                <i class="fas fa-power-off shadow-sm text-primary"></i>
-            </button>
-        </form>
+        <button class="btn-circle btn-light border-0" data-toggle="modal" data-target="#logoutModal">
+            <i class="fas fa-power-off shadow-sm text-primary"></i>
+        </button>
     </div>
 
 </ul>

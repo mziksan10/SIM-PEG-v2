@@ -16,18 +16,18 @@
                             <div class="text-center mb-4">
                                 <img src="{{ asset('/assets/img') }}/logo-simpeg.png" style="max-width: 50%;">
                             </div>
-                            @if(session()->has('success'))                                
+                            @if(session()->has('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <small>{{ session('success') }}</small>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            @elseif(session()->has('failed'))                                
+                            @elseif(session()->has('failed'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <small>{{ session('failed') }}</small>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             @endif
@@ -35,18 +35,18 @@
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-user @error('username') is-invalid @enderror" placeholder="Masukan NIP.." name="username" value="{{ old('username') }}" autofocus>
-                                        @error('username')
-                                        <div class="invalid-feedback ml-3">{{ $message }}</div>
-                                        @enderror
+                                    @error('username')
+                                    <div class="invalid-feedback ml-3">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-user" placeholder="Masukan Password.." name="password">
                                 </div>
-                                <button class="btn btn-primary btn-user btn-block" type="submit">Login</button>
+                                <button class="btn btn-secondary btn-user btn-block shadow-sm" type="submit"><i class="fas fa-sign-in-alt mr-1"></i>Login</button>
                             </form>
                         </div>
                         <div class="card-footer text-center">
-                        <a class="small" href="/register">Buat akun baru!</a>
+                            <a class="small" href="/register">Buat akun baru!</a>
                         </div>
                     </div>
                 </div>

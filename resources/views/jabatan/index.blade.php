@@ -71,9 +71,8 @@
                                         <td style="text-align: center">{{ $item->nama_jabatan }}</td>
                                         <td style="text-align: center">{{ $item->bidang->nama_bidang }}</td>
                                         <td style="text-align: center">
-                                            <button class="btn btn-sm" data-toggle="modal" data-target="#showModal{{ $item->id }}"><i class="fas fa-eye fa-sm text-primary"></i> Show</button>
-                                            |
-                                            <button class="btn btn-sm" data-toggle="modal" data-target="#editModal{{ $item->id }}"><i class="fas fa-edit fa-sm text-warning"></i> Edit</button>
+                                            <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#showModal{{ $item->id }}"><i class="fas fa-eye fa-sm text-primary"></i></button>
+                                            <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#editModal{{ $item->id }}"><i class="fas fa-edit fa-sm text-warning"></i></button>
                                         </td>
                                     </tr>
                                     @endforeach

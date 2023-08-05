@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BidangController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\JabatanController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\GolonganController;
@@ -26,6 +27,8 @@ use App\Http\Controllers\RewardPunishmentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route Landing
+Route::get('/landing', [Controller::class, 'index'])->name('landing')->middleware('guest');
 // Route Login
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'authenticate']);

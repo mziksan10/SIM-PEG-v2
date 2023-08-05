@@ -31,7 +31,7 @@ class RewardPunishmentController extends Controller
             'title' => 'Reward & Punishment',
             'dataRewardPunishment' => DB::table('reward_punishments')
                 ->selectRaw('*, count(*) as total')
-                ->groupBy('status', 'nama_bentuk', 'tanggal_sk')
+                ->groupBy('status', 'nama_bentuk', 'tanggal')
                 ->get(),
             'status' => RewardPunishment::status(),
             'dataPenerima' => RewardPunishment::all(),
@@ -44,15 +44,10 @@ class RewardPunishmentController extends Controller
         $validatedData = $request->validate([
             'status' => 'required',
             'nama_bentuk' => 'required',
-            'tanggal_sk' => 'required',
-            'scan_sk' => 'mimes:pdf|max:1024',
+            'tanggal' => 'required',
             'pegawai_id' => 'required'
         ]);
-        if (request()->file('scan_sk')) {
-            $validatedData['scan_sk'] = request()->file('scan_sk')->store('berkas-pegawai');
-        } else {
-            $validatedData['scan_sk'] = 0;
-        }
+
         foreach ($request->pegawai_id as $item) {
             $validatedData['pegawai_id'] = $item;
             RewardPunishment::create($validatedData);

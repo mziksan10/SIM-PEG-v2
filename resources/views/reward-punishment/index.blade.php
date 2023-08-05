@@ -82,8 +82,7 @@
                                                     <tr class="bg-light">
                                                         <th style="text-align: center">No</th>
                                                         <th style="text-align: center">Nama Bentuk</th>
-                                                        <th style="text-align: center">Tanggal SK</th>
-                                                        <th style="text-align: center">Scan SK</th>
+                                                        <th style="text-align: center">Tanggal</th>
                                                         <th style="text-align: center">Aksi</th>
                                                     </tr>
                                                 </thead>
@@ -95,16 +94,9 @@
                                                     <tr>
                                                         <td style="text-align: center">{{ $no++ }}</td>
                                                         <td style="text-align: center">{{ $item->nama_bentuk }}</td>
-                                                        <td style="text-align: center">{{ $item->tanggal_sk }}</td>
-                                                        @if($item->status != 0)
-                                                        <td style="text-align: center"><a href="{{asset('storage/' . $item->scan_sk)}}" target="_blank" class="badge badge-sm badge-danger ml-1"><i class="fas fa-file-pdf"></i> Show</a></td>
-                                                        @else
+                                                        <td style="text-align: center">{{ $item->tanggal }}</td>
                                                         <td style="text-align: center">
-                                                            <div class="badge badge-warning">Tidak Ada</div>
-                                                        </td>
-                                                        @endif
-                                                        <td style="text-align: center">
-                                                            <button class="btn btn-sm" data-toggle="modal" data-target="#showModal{{ $item->id }}"><i class="fas fa-eye fa-sm text-primary"></i> Show</button>
+                                                            <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#showModal{{ $item->id }}"><i class="fas fa-eye fa-sm text-primary"></i></button>
                                                         </td>
                                                     </tr>
                                                     @endif

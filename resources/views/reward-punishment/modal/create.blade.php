@@ -36,16 +36,9 @@
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label>Tanggal SK</label>
-                            <input type="date" class="form-control @error('tanggal_sk') is-invalid @enderror" name="tanggal_sk" value="{{ old('tanggal_sk') }}">
-                            @error('tanggal_sk')
-                            <div class="invalid-feedback ml-3">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label>Upload Scan SK</label>
-                            <input type="file" class="form-control @error('scan_sk') is-invalid @enderror" name="scan_sk">
-                            @error('scan_sk')
+                            <label>Tanggal</label>
+                            <input type="date" class="form-control @error('tanggal') is-invalid @enderror" name="tanggal" value="{{ old('tanggal') }}">
+                            @error('tanggal')
                             <div class="invalid-feedback ml-3">{{ $message }}</div>
                             @enderror
                         </div>

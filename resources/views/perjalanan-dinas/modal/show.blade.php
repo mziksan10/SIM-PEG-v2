@@ -68,7 +68,7 @@
                     </tr>
                     <tr>
                         <td colspan="3" style="font-size: x-small;">
-                            <table class="table-borderless" width="100%">
+                            <table class="table-bordered" width="100%">
                                 <?php $no = 1; ?>
                                 @foreach($dataPegawaiPerjalananDinas as $dp)
                                 @if($dp->keperluan === $item->keperluan && $dp->tempat_tujuan === $item->tempat_tujuan && $dp->tanggal_berangkat === $item->tanggal_berangkat)
@@ -81,7 +81,7 @@
                                             <form action="{{ route('destroyPerjalananDinas', $dp->id) }}" method="post" class="d-inline">
                                                 @method('delete')
                                                 @csrf
-                                                <button class="badge badge-sm badge-danger" onclick="return confirm('Apakah kamu yakin?')" style="width:100%"><i class="fas fa-trash fa-sm"></i></button>
+                                                <button class="badge badge-sm badge-danger border-0" onclick="return confirm('Apakah kamu yakin?')" style="width:100%"><i class="fas fa-trash fa-sm"></i></button>
                                             </form>
                                         </small>
                                     </td>
@@ -92,12 +92,11 @@
                         </td>
                     </tr>
                 </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-@endforeach
+    @endforeach

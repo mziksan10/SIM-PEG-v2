@@ -149,7 +149,7 @@
                                                         @endif
                                                         <td style="text-align: center" class="align-middle"><a href="#" class="badge badge-primary align-middle">{{ $thn." Tahun" }} <br> {{ $bln." Bulan ".$tgl." Hari" }}</a></td>
                                                         <td style="text-align: center" class="align-middle">
-                                                            <a href="{{ route('showPegawai', $item->id) }}" class="btn btn-sm"><i class="fas fa-eye fa-sm text-primary"></i> Show</a>
+                                                            <a href="{{ route('showPegawai', $item->id) }}" class="btn btn-outline-secondary btn-sm"><i class="fas fa-eye fa-sm text-primary"></i></a>
                                                         </td>
                                                     </tr>
                                                     @endif

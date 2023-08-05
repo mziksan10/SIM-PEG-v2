@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body">
 
-                <table class="table">
+                <table class="table mb-0">
                     <tr>
                         <th>Nama Pelatihan</th>
                         <td> : </td>
@@ -58,7 +58,7 @@
                     </tr>
                     <tr>
                         <td colspan="3" style="font-size: x-small;">
-                            <table id="myTable" class="table-borderless" width="100%">
+                            <table id="myTable" class="table-bordered" width="100%">
                                 <?php $no = 1; ?>
                                 @foreach($dataPesertaPelatihan as $dp)
                                 @if($dp->nama_pelatihan === $item->nama_pelatihan && $dp->sifat_pelatihan === $item->sifat_pelatihan && $dp->tanggal_mulai === $item->tanggal_mulai && $dp->tanggal_berakhir === $item->tanggal_berakhir)
@@ -70,7 +70,7 @@
                                         <form action="{{ route('destroyPerjalananDinas', $dp->id) }}" method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
-                                            <button class="btn btn-danger btn-sm" onclick="return confirm('Apakah kamu yakin?')" style="width:100%"><i class="fas fa-trash fa-sm"></i></button>
+                                            <button class="badge badge-danger btn-sm border-0" onclick="return confirm('Apakah kamu yakin?')" style="width:100%"><i class="fas fa-trash fa-sm"></i></button>
                                         </form>
                                     </td>
                                 </tr>

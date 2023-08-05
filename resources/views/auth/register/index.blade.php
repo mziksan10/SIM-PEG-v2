@@ -16,58 +16,55 @@
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Buat akun baru!</h1>
                             </div>
-                            @if(session()->has('success'))                      
+                            @if(session()->has('success'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 <small>{{ session('success') }}</small>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             @elseif(session()->has('failed'))
                             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <small>{{ session('failed') }}</small>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             @else
                             <div class="alert alert-warning alert-dismissible fade show" role="alert">
                                 <small><b>Pendaaftaran akun</b> hanya bisa dilakukan jika sudah terdaftar sebagai pegawai di Politeknik Piksi Ganesha.</small>
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
+                                    <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             @endif
                             <form class="user" action="/register" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user @error('username') is-invalid @enderror"
-                                        placeholder="Masukan NIP.." name="username" value="{{ old('username') }}">
+                                    <input type="text" class="form-control form-control-user @error('username') is-invalid @enderror" placeholder="Masukan NIP.." name="username" value="{{ old('username') }}">
                                     @error('username')
                                     <div class="invalid-feedback ml-3">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror"
-                                        placeholder="Masukan Password.." name="password">
+                                    <input type="password" class="form-control form-control-user @error('password') is-invalid @enderror" placeholder="Masukan Password.." name="password">
                                     @error('password')
                                     <div class="invalid-feedback ml-3">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-user @error('confirmPassword') is-invalid @enderror"
-                                        placeholder="Masukan Password.." name="confirmPassword">
+                                    <input type="password" class="form-control form-control-user @error('confirmPassword') is-invalid @enderror" placeholder="Masukan Password.." name="confirmPassword">
                                     @error('confirmPassword')
                                     <div class="invalid-feedback ml-3">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <button class="btn btn-primary btn-user btn-block" type="submit">Register</button>
+                                <button class="btn btn-secondary btn-user btn-block shadow-sm" type="submit"><i class="fas fa-paper-plane mr-1"></i>Register</button>
                             </form>
                         </div>
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                <a class="small" href="/login">Sudah punya akun? Masuk!</a>
+                    <a class="small" href="/login">Sudah punya akun? Masuk!</a>
                 </div>
             </div>
         </div>

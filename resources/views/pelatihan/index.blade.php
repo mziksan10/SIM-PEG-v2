@@ -79,7 +79,7 @@
                         @endif
                         </td>
                         <td class="align-middle" style="text-align: center">
-                            <button class="btn btn-sm" data-toggle="modal" data-target="#showModal{{ $item->id }}"><i class="fas fa-eye fa-sm text-primary"></i> Show</button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#showModal{{ $item->id }}"><i class="fas fa-eye fa-sm text-primary"></i></button>
                         </td>
                         </tr>
                         @endforeach

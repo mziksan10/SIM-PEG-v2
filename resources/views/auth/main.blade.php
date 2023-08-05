@@ -27,7 +27,13 @@
 </head>
 
 <body class="auth-background">
-
+    <div class="preloader">
+        <div class="loading">
+            <div class="spinner-border" style="width: 5rem; height: 5rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+    </div>
     <div class="container">
 
         @yield('container');
@@ -43,6 +49,12 @@
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('/assets/js/sb-admin-2.min.js')}}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $(".preloader").fadeOut("slow");
+        });
+    </script>
 
 </body>
 
