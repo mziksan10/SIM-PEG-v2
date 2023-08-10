@@ -23,7 +23,7 @@
     <button class="btn btn-secondary position-fixed" style="width: 50px; height: 50px; right: 30px; bottom: 30px; z-index: 100;" onclick="topFunction()" id="scrlToUp" title="Go to top"><i class="fas fa-chevron-up"></i></button>
 
     <section class="auth-background d-flex" style="height: 600px;">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; right: 10px; left: 10px; top: 10px; opacity: 90%;">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; right: 10px; left: 10px;">
             <div class="container">
                 <a class="navbar-brand" href="#">
                     <img src="/assets/img/logo_piksi.png" width="30" height="30" class="d-inline-block align-top" alt="">
