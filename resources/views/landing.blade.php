@@ -20,14 +20,14 @@
 
 <body>
     <!-- Scroll To Up -->
-    <button class="btn btn-secondary position-fixed" style="width: 50px; height: 50px; right: 30px; bottom: 30px;" onclick="topFunction()" id="scrlToUp" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+    <button class="btn btn-secondary position-fixed" style="width: 50px; height: 50px; right: 30px; bottom: 30px; z-index: 100;" onclick="topFunction()" id="scrlToUp" title="Go to top"><i class="fas fa-chevron-up"></i></button>
 
     <section class="auth-background d-flex" style="height: 600px;">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; right: 10px; left: 10px; top: 10px; opacity: 90%;">
             <div class="container">
                 <a class="navbar-brand" href="#">
                     <img src="/assets/img/logo_piksi.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                    SIM-PEG PPG
+                    <b>SIM-PEG PPG</b>
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -60,8 +60,7 @@
                     <p class="leads">Aplikasi pengelolaan data kepegawaian di lingkungan institusi Kampus Politeknik Piksi Ganesha.</p>
                     <hr>
                     <div class="d-flex justify-content-start">
-                        <a href="/login" class="btn btn-light m-3" style="width: 100%;">Learn More</a>
-                        <a href="/login" class="btn btn-primary m-3" style="width: 100%;"><i class="fas fa-sign-in-alt mr-1"></i>Login Pegawai</a>
+                        <a href="/login" class="btn btn-primary" style="width: 100%;"><i class="fas fa-sign-in-alt mr-1"></i>Login Pegawai</a>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6">
@@ -122,7 +121,7 @@
                 <div class="bg-secondary m-5" style="height: 1px;"></div>
                 <div class="row">
                     <div class="col-md-12 col-lg-6">
-                        <div class="card bg-secondary mt-3 shadow-sm border-0" style="height: 650px;">
+                        <div class="card bg-dark mt-3 shadow-sm border-0" style="height: 650px;">
                             <div class="container">
                                 <div class="text-center text-white pt-5"><i class="fas fa-users fa-2xl"></i></div>
                                 <h3 class="text-white mt-3">Manajemen Kepegawaian</h3>
@@ -137,7 +136,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6">
-                        <div class="card bg-secondary mt-3 shadow-sm border-0" style="height: 650px;">
+                        <div class="card bg-dark mt-3 shadow-sm border-0" style="height: 650px;">
                             <div class="container">
                                 <div class="text-center text-white pt-5"><i class="fas fa-calendar-alt fa-2xl"></i></div>
                                 <h3 class="text-white mt-3">Manajemen Presensi</h3>
@@ -193,9 +192,9 @@
         </div>
     </section>
 
-    <footer class="bg-dark">
+    <footer id="footer" class="bg-dark">
         <div class="container pt-3 pb-3 text-center text-decoration-none text-white">
-            <span>Copyright &copy; SIMPEG PIKSI {{ date('Y') }} | Develoved by M Zaenal Iksan</span>
+            <span>Copyright &copy; SIM-PEG PPG {{ date('Y') }} | Develoved by M Zaenal Iksan</span>
         </div>
     </footer>
     <!-- Optional JavaScript; choose one of the two! -->
