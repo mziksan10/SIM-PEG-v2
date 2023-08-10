@@ -19,6 +19,9 @@
 </head>
 
 <body>
+    <!-- Scroll To Up -->
+    <button class="btn btn-secondary position-fixed" style="width: 50px; height: 50px; right: 30px; bottom: 30px;" onclick="topFunction()" id="scrlToUp" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+
     <section class="auth-background d-flex" style="height: 600px;">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
@@ -119,7 +122,7 @@
                 <div class="bg-secondary m-5" style="height: 1px;"></div>
                 <div class="row">
                     <div class="col-md-12 col-lg-6">
-                        <div class="card bg-primary mt-3 shadow-sm border-0" style="height: 650px;">
+                        <div class="card bg-secondary mt-3 shadow-sm border-0" style="height: 650px;">
                             <div class="container">
                                 <div class="text-center text-white pt-5"><i class="fas fa-users fa-2xl"></i></div>
                                 <h3 class="text-white mt-3">Manajemen Kepegawaian</h3>
@@ -134,7 +137,7 @@
                         </div>
                     </div>
                     <div class="col-md-12 col-lg-6">
-                        <div class="card bg-primary mt-3 shadow-sm border-0" style="height: 650px;">
+                        <div class="card bg-secondary mt-3 shadow-sm border-0" style="height: 650px;">
                             <div class="container">
                                 <div class="text-center text-white pt-5"><i class="fas fa-calendar-alt fa-2xl"></i></div>
                                 <h3 class="text-white mt-3">Manajemen Presensi</h3>
@@ -179,7 +182,7 @@
                                         <textarea class="form-control" placeholder="Type here.." rows="3"></textarea>
                                     </div>
                                     <div class="form-inline">
-                                        <button type="submit" class="btn btn-primary" style="width: 100%;">Submit</button>
+                                        <button type="submit" class="btn btn-secondary" style="width: 100%;"><i class="fas fa-paper-plane mr-1"></i>Submit</button>
                                     </div>
                                 </form>
                             </div>
@@ -202,6 +205,29 @@
 
     <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/7e6a46288f.js" crossorigin="anonymous"></script>
+    <script>
+        // Get the button
+        let mybutton = document.getElementById("scrlToUp");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
 
 </body>
 
