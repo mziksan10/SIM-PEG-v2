@@ -414,6 +414,7 @@ class PegawaiController extends Controller
             'pekerjaan_sebelumnya' => 'nullable',
             'jabatan_sebelumnya' => 'nullable',
             'masa_jabatan_sebelumnya' => 'nullable',
+            'tanggal_masuk' => 'required',
         ];
         $validatedData = $request->validate($rules);
         if ($request->status == 2) {
