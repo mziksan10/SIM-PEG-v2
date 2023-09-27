@@ -231,7 +231,7 @@
                                     @if($pegawai->riwayatJabatan === null)
                                     <td>:</td>
                                     @elseif($pegawai->riwayatJabatan)
-                                    @if($pegawai->riwayatJabatan->scan_sk !=0)
+                                    @if($pegawai->riwayatJabatan->scan_sk != null)
                                     <td>: <a href="{{asset('storage/' . $pegawai->riwayatJabatan->scan_sk)}}" target="_blank" class="badge badge-sm badge-danger ml-1"><i class="fas fa-file-pdf"></i> Show</a></td>
                                     @else
                                     <td>: <div class="badge badge-warning">Tidak Ada</div>
@@ -306,7 +306,7 @@
                                 </tr>
                                 <tr>
                                     <th>Scan Ijazah</th>
-                                    @if($pegawai->riwayatPendidikan->scan_ijazah !=0)
+                                    @if($pegawai->riwayatPendidikan->scan_ijazah != null)
                                     <td>: <a href="{{asset('storage/' . $pegawai->riwayatPendidikan->scan_ijazah)}}" target="_blank" class="badge badge-sm badge-danger ml-1"><i class="fas fa-file-pdf"></i> Show</a></td>
                                     @else
                                     <td>: <div class="badge badge-warning">Tidak Ada</div>
@@ -353,7 +353,7 @@
                         <td>{{ $item->jurusan }}</td>
                         <td>{{ $item->institusi }}</td>
                         <td>{{ $item->tahun_lulus }}</td>
-                        @if($pegawai->riwayatPendidikan->scan_ijazah !=0)
+                        @if($pegawai->riwayatPendidikan->scan_ijazah != null)
                         <td><a href="{{asset('storage/' . $pegawai->riwayatPendidikan->scan_ijazah)}}" target="_blank" class="badge badge-sm badge-danger ml-1"><i class="fas fa-file-pdf"></i> Show</a></td>
                         @else
                         <td>
@@ -407,7 +407,7 @@
                         </td>
                         <td>{{ $item->tmt_golongan }}</td>
                         <td>{{ $item->tmt_bekerja }}</td>
-                        @if($pegawai->riwayatJabatan->scan_sk !=0)
+                        @if($pegawai->riwayatJabatan->scan_sk != null)
                         <td><a href="{{asset('storage/' . $pegawai->riwayatJabatan->scan_sk)}}" target="_blank" class="badge badge-sm badge-danger ml-1"><i class="fas fa-file-pdf"></i> Show</a></td>
                         @else
                         <td>
