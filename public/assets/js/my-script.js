@@ -233,3 +233,13 @@ function set(e) {
     e = e < 10 ? '0'+ e : e;
     return e;
 }
+
+// Enable NIP Input
+function nipEdit() {
+    document.getElementById("nip").removeAttribute('readonly');
+}
+
+// Enable NIP Input
+function tmtJabatanEdit() {
+    document.getElementById("tanggal_masuk").removeAttribute('readonly');
+}
