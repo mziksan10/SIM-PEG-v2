@@ -125,16 +125,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-4 col-md-8">
                                                 <label>Tempat Lahir</label>
-                                                <select name="tempat_lahir" class="select2 form-control @error('tempat_lahir') is-invalid @enderror">
-                                                    <option value="" selected>Pilih..</option>
-                                                    @foreach($kota as $item)
-                                                    @if(old('tempat_lahir') == $item->city_id)
-                                                    <option value="{{ $item->city_id }}" selected>{{ $item->city_name }}</option>
-                                                    @else
-                                                    <option value="{{ $item->city_id }}">{{ $item->city_name }}</option>
-                                                    @endif
-                                                    @endforeach
-                                                </select>
+
                                                 @error('tempat_lahir')
                                                 <div class="invalid-feedback ml-3">{{ $message }}</div>
                                                 @enderror
@@ -208,14 +199,10 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-3 col-md-6">
                                                 <label>Provinsi</label>
-                                                <select id="provinsi" name="provinsi" class="select2 form-control @error('provinsi') is-invalid @enderror">
-                                                    <option value="" selected>Pilih..</option>
-                                                    @foreach($provinsi as $item)
-                                                    @if(old('provinsi') == $item->prov_id)
-                                                    <option value="{{ $item->prov_id }}" selected>{{ $item->prov_name }}</option>
-                                                    @else
-                                                    <option value="{{ $item->prov_id }}">{{ $item->prov_name }}</option>
-                                                    @endif
+                                                <select name="province" id="province" class="form-control">
+                                                    <option value="">== Select Province ==</option>
+                                                    @foreach ($provinces as $id => $name)
+                                                    <option value="{{ $id }}">{{ $name }}</option>
                                                     @endforeach
                                                 </select>
                                                 @error('provinsi')
@@ -224,16 +211,8 @@
                                             </div>
                                             <div class="form-group col-lg-3 col-md-6">
                                                 <label>Kabupaten/Kota</label>
-                                                <select id="kab_kota" name="kab_kota" class="select2 form-control @error('kab_kota') is-invalid @enderror">
-                                                    @if(old('kab_kota'))
-                                                    @foreach($kota as $item)
-                                                    @if($item->city_id == old('kab_kota'))
-                                                    <option value="{{ $item->city_id }}" selected>{{ $item->city_name }}</option>
-                                                    @endif
-                                                    @endforeach
-                                                    @else
-                                                    <option value="" selected>Pilih..</option>
-                                                    @endif
+                                                <select name="city" id="city" class="form-control">
+                                                    <option value="">== Select City ==</option>
                                                 </select>
                                                 @error('kab_kota')
                                                 <div class="invalid-feedback ml-3">{{ $message }}</div>
@@ -241,34 +220,14 @@
                                             </div>
                                             <div class="form-group col-lg-2 col-md-4">
                                                 <label>Kecamatan</label>
-                                                <select id="kecamatan" name="kecamatan" class="select2 form-control @error('kecamatan') is-invalid @enderror">
-                                                    @if(old('kecamatan'))
-                                                    @foreach($kecamatan as $item)
-                                                    @if($item->dis_id == old('kecamatan'))
-                                                    <option value="{{ $item->dis_id }}" selected>{{ $item->dis_name }}</option>
-                                                    @endif
-                                                    @endforeach
-                                                    @else
-                                                    <option value="" selected>Pilih..</option>
-                                                    @endif
-                                                </select>
+
                                                 @error('kecamatan')
                                                 <div class="invalid-feedback ml-3">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                             <div class="form-group col-lg-2 col-md-4">
                                                 <label>Desa</label>
-                                                <select id="desa" name="desa" class="select2 form-control @error('desa') is-invalid @enderror">
-                                                    @if(old('desa'))
-                                                    @foreach($desa as $item)
-                                                    @if($item->subdis_id == old('desa'))
-                                                    <option value="{{ $item->subdis_id }}" selected>{{ $item->subdis_name }}</option>
-                                                    @endif
-                                                    @endforeach
-                                                    @else
-                                                    <option value="" selected>Pilih..</option>
-                                                    @endif
-                                                </select>
+
                                                 @error('desa')
                                                 <div class="invalid-feedback ml-3">{{ $message }}</div>
                                                 @enderror
@@ -494,5 +453,19 @@
                     impPreview.src = oFREvent.target.result;
                 }
             }
+
+            // Wilayah Indonesia
+            $(function () {
+                $('#province').on('change', function () {
+                    axios.post('{{ route('dependent-dropdown.store') }}', {id: $(this).val()})
+                        .then(function (response) {
+                            $('#city').empty();
+
+                            $.each(response.data, function (id, name) {
+                                $('#city').append(new Option(name, id))
+                            })
+                        });
+                });
+            });
         </script>
         @endsection

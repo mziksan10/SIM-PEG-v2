@@ -10,10 +10,10 @@ use App\Models\Golongan;
 use App\Models\RiwayatJabatan;
 use App\Models\RiwayatPendidikan;
 use App\Models\Berkas;
-use App\Models\Provinsi;
-use App\Models\Kota;
-use App\Models\Kecamatan;
-use App\Models\Desa;
+// use App\Models\Provinsi;
+// use App\Models\Kota;
+// use App\Models\Kecamatan;
+// use App\Models\Desa;
 use PDF;
 use Illuminate\Http\Request;
 use App\Exports\PegawaisExport;
@@ -22,6 +22,8 @@ use Illuminate\Routing\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use DateTime;
+use Laravolt\Indonesia\Models\Province;
+use Laravolt\Indonesia\Models\City;
 
 class PegawaiController extends Controller
 {
@@ -99,16 +101,18 @@ class PegawaiController extends Controller
         } elseif ($selectNIP->get()) {
             $createNIP = '130041' . date('dmy') . substr($selectNIP->nip, -4) + 1;
         }
+        $provinces = Province::pluck('name', 'id');
         return view('/pegawai/create', [
             'title' => 'Form Pegawai Kontrak',
             'bidang' => Bidang::all(),
             'jabatan' => Jabatan::all(),
             'golongan' => Golongan::all()->sortBy('golongan'),
             'jenisKelamin' => Pegawai::jenisKelamin(),
-            'provinsi' => Provinsi::all()->sortBy('prov_name'),
-            'kota' => Kota::all()->sortBy('city_name'),
-            'kecamatan' => Kecamatan::all()->sortBy('dis_name'),
-            'desa' => Desa::all()->sortBy('subdis_name'),
+            'provinces' => $provinces,
+            // 'provinsi' => Provinsi::all()->sortBy('prov_name'),
+            // 'kota' => Kota::all()->sortBy('city_name'),
+            // 'kecamatan' => Kecamatan::all()->sortBy('dis_name'),
+            // 'desa' => Desa::all()->sortBy('subdis_name'),
             'nip_baru' => $createNIP,
             'status' => '2',
             'jenjang' => RiwayatPendidikan::jenjang(),
@@ -151,6 +155,11 @@ class PegawaiController extends Controller
      */
     public function store(Request $request)
     {
+        $cities = City::where('province_id', $request->get('id'))
+            ->pluck('name', 'id');
+
+        return response()->json($cities);
+        
         // VALIDASI DATA PRIBADI
         $validatedData = $request->validate([
             'nik' => 'required|max:16',

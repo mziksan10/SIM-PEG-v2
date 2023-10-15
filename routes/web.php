@@ -16,6 +16,7 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PelatihanController;
 use App\Http\Controllers\PerjalananDinasController;
 use App\Http\Controllers\RewardPunishmentController;
+use App\Http\Controllers\DependentDropdownController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,9 @@ use App\Http\Controllers\RewardPunishmentController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Wilayah Indonesia
+Route::post('dependent-dropdown', 'DependentDropdownController@store')->name('dependent-dropdown.store');
+
 // Route Landing
 Route::get('/landing', [Controller::class, 'index'])->name('landing')->middleware('guest');
 // Route Login

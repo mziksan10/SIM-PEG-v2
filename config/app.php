@@ -184,6 +184,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+        Laravolt\Indonesia\ServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -257,6 +258,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        'Indonesia' => Laravolt\Indonesia\Facade::class,
     ],
 
 ];
