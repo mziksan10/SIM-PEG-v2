@@ -199,7 +199,7 @@ class PegawaiController extends Controller
                 $request->nip . '.' . $request->file('foto')->extension()
             );
         }
-        $validatedData['tanggal_masuk'] = $request->tanggal_masuk;
+        $validatedData['tanggal_masuk'] = date_create()->format('Y-m-d');
         $validatedData['nip'] = $request->nip;
         $validatedData['status'] = $request->status;
 

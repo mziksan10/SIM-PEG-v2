@@ -97,12 +97,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-lg-2 col-md-6">
                                                 <label>NIP</label>
-                                                <div class="input-group mb-3">
-                                                    <input id="nip" type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="@if(!old('nip')) {{ $nip_baru }} @else {{ old('nip') }} @endif" readonly>
-                                                    <div class="input-group-append">
-                                                        <button type="button" class="input-group-text" value="Edit" onclick="nipEdit()"><i class="fa fa-edit"></i></button>
-                                                    </div>
-                                                </div>
+                                                <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="@if(!old('nip')) {{ $nip_baru }} @else {{ old('nip') }} @endif" readonly="readonly">
                                                 @error('nip')
                                                 <div class="invalid-feedback ml-3">{{ $message }}</div>
                                                 @enderror
@@ -412,12 +407,7 @@
                                 </div>
                                 <div class="form-group col-lg-2 col-md-4">
                                     <label>TMT Jabatan</label>
-                                    <div class="input-group mb-3">
-                                        <input id="tanggal_masuk" type="date" name="tanggal_masuk" class="form-control" value="{{date('Y-m-d')}}" readonly>
-                                        <div class="input-group-append">
-                                            <button type="button" class="input-group-text" value="Edit" onclick="tmtJabatanEdit()"><i class="fa fa-edit"></i></button>
-                                        </div>
-                                    </div>
+                                    <input type="date" class="form-control" value="{{date('Y-m-d')}}" disabled>
                                 </div>
                             </div>
                             <div class="form-row">
