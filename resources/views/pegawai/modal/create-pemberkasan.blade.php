@@ -36,6 +36,7 @@
         <div class="form-row">
         <div class="form-group col-md-12">
             <input type="file" name="file" class="form-control @error('file') is-invalid @enderror">
+            <small><i>*File harus bertipe PDF berukuran maks. 1 mb.</i></small>
             @error('file')
             <div class="invalid-feedback ml-3">{{ $message }}</div>
             @enderror

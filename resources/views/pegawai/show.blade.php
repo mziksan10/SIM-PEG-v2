@@ -62,15 +62,15 @@
                                     $tgl = $sekarang->diff($tanggal_masuk)->d;
                                     ?>
                                     @if($pegawaiBerulangTahun == false && $pegawaiNaikGolongan == false)
-                                    <small><b>Tanggal Masuk</b> : {{ $pegawai->tanggal_masuk }} | <b>Lama Bekerja</b> : {{ $thn." Tahun " . $bln." Bulan ".$tgl." Hari" }}.</small>
+                                    <small class="ml-3"><i>Tidak ada informasi penting.</i></small>
                                     @else
                                     @if(date('d F', strtotime($pegawai->tanggal_lahir)) == date('d F', strtotime(now())) )
                                     <small class="ml-3"><i class="fas fa-gift"></i> Hari ini <b>{{ $pegawai->nama }}</b> Berulang Tahun yang ke- {{ date('Y', strtotime(now())) - date('Y', strtotime($pegawai->tanggal_lahir)) }} Tahun.</small>
                                     @endif
                                     @if($lamaBekerja[0] > $pegawai->riwayatJabatan->golongan->min_masa_kerja && $lamaBekerja[0] != $pegawai->riwayatJabatan->golongan->max_masa_kerja)
                                     <small class="ml-3">Tahun ini <b>{{ $pegawai->nama }}</b> harus naik golongan.
-                                        @endif
-                                        @endif
+                                    @endif
+                                    @endif
                                 </marquee>
                             </div>
                         </div>
@@ -94,20 +94,26 @@
                 <div class="card-body">
                     <div class="form-row">
                         <div class="col-lg-3 col-md-12 card">
-                            <div class="modal-dialog-centered justify-content-center" style="width:100%">
-                                <div style="max-height: 500px; max-width: 250px; overflow: hidden;">
-                                    @if($pegawai->foto)
-                                    <img src="{{ asset('storage/' . $pegawai->foto) }}" class="img-preview mb-2 mt-3" style="height: 300px; width: 250px; overflow: hidden;">
-                                    @elseif(!$pegawai->foto)
-                                    <img src="{{ asset('assets/img') }}/user_default.png" class="img-preview mb-2 mt-3" style="height: 300px; width: 250px; overflow: hidden;">
-                                    @endif
-                                    <div class=" text-center my-3 small">
-                                        <b>{{ $pegawai->nama }}</b><br>
-                                        NIP. {{ $pegawai->nip }}
-                                    </div>
-                                    <div class="badge badge-primary align-middle small mb-3" style="width:100%">{{ $thn." Tahun" }} <br> {{ $bln." Bulan ".$tgl." Hari" }}</div>
-                                </div>
+                            @if($pegawai->foto)
+                            <img src="{{ asset('storage/' . $pegawai->foto) }}" class="img-preview mb-2 mt-2 mx-auto" style="height: 300px; width: 250px; overflow: hidden;">
+                            @elseif(!$pegawai->foto)
+                            <img src="{{ asset('assets/img') }}/user_default.png" class="img-preview mb-2 mt-2 mx-auto" style="height: 300px; width: 250px; overflow: hidden;">
+                            @endif
+                            <div class=" text-center my-3 small">
+                                <b>{{ $pegawai->nama }}</b><br>
+                                NIP. {{ $pegawai->nip }}
                             </div>
+                            <div class="badge badge-light align-middle small mb-1" style="width:100%">
+                            Tanggal Masuk: {{  ucwords(date('d F Y', strtotime($pegawai->tanggal_masuk))) }}
+                            </div>
+                            <div class="text-center mb-1 small" style="width:100%">{{ $thn." Tahun ".$bln." Bulan ".$tgl." Hari" }}</div>
+                            @if($pegawai->status == 1)
+                            <div class="badge badge-primary align-middle small mb-3" style="width:100%">Karyawan Tetap</div>
+                            @elseif($pegawai->status == 2)
+                            <div class="badge badge-warning align-middle small mb-3" style="width:100%">Karyawan Kontrak</div>
+                            @elseif($pegawai->status == 3)
+                            <div class="badge badge-success align-middle small mb-3" style="width:100%">Karyawan Magang</div>
+                            @endif
                         </div>
                         <div class="col-lg-9 col-md-12">
                             <table class="table small">
@@ -116,7 +122,7 @@
                                     <td>: {{ $pegawai->nik }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Tempat, Tanggal lahir</th>
+                                    <th style="white-space: nowrap; width: 1%;">Tempat, Tanggal lahir</th>
                                     <td>: {{ $pegawai->cities->city_name . ", " . ucwords(strtoupper(date('d F Y', strtotime($pegawai->tanggal_lahir)))) }}</td>
                                 </tr>
                                 <tr>
@@ -125,7 +131,7 @@
                                 </tr>
                                 <tr>
                                     <th>Alamat</th>
-                                    <td>: {{ $pegawai->alamat . " " . $pegawai->subdistricts->subdis_name . ", " . $pegawai->cities->city_name . " " . $pegawai->districts->dis_name . " " . $pegawai->provinces->prov_name . " " . $pegawai->kode_pos . "(" . ($pegawai->status_kepemilikan_rumah) . ")" }}</td>
+                                    <td>: {{ $pegawai->alamat . " " . $pegawai->subdistricts->subdis_name . ", " . $pegawai->cities->city_name . " " . $pegawai->districts->dis_name . " " . $pegawai->provinces->prov_name . " " . $pegawai->kode_pos }}<br>&nbsp &nbsp{{ "(" . ($pegawai->status_kepemilikan_rumah) . ")" }}</td>
                                 </tr>
                                 <tr>
                                     <th>No. Handphone</th>
@@ -140,8 +146,7 @@
                                     <td>: {{ $pegawai->status_pernikahan }}</td>
                                 </tr>
                                 <tr class="bg-light">
-                                    <th><b># Pengalaman Kerja Sebelumnya</b></th>
-                                    <td></td>
+                                    <th colspan="2"><b># Pengalaman Kerja Sebelumnya</b></th>
                                 </tr>
                                 <tr>
                                     <th>Nama Instansi</th>
@@ -354,7 +359,7 @@
                         <td>{{ $item->institusi }}</td>
                         <td>{{ $item->tahun_lulus }}</td>
                         @if($pegawai->riwayatPendidikan->scan_ijazah != null)
-                        <td><a href="{{asset('storage/' . $pegawai->riwayatPendidikan->scan_ijazah)}}" target="_blank" class="badge badge-sm badge-danger ml-1"><i class="fas fa-file-pdf"></i> Show</a></td>
+                        <td><a href="{{asset('storage/' . $item->scan_ijazah)}}" target="_blank" class="badge badge-sm badge-danger ml-1"><i class="fas fa-file-pdf"></i> Show</a></td>
                         @else
                         <td>
                             <div class="badge badge-warning">Tidak Ada</div>
@@ -399,16 +404,16 @@
                         <td>{{ $item->jabatan->nama_jabatan }}</td>
                         <td>
                             {{ $item->golongan->golongan}}
-                            @if( $pegawai->riwayatJabatan->golongan->status == 'Kontrak')
+                            @if( $item->golongan->status == 'Kontrak')
                             <div class="badge badge-warning">KONTRAK</div>
-                            @elseif( $pegawai->riwayatJabatan->golongan->status == 'Tetap')
+                            @elseif( $item->golongan->status == 'Tetap')
                             <div class="badge badge-primary">TETAP</div>
                             @endif
                         </td>
                         <td>{{ $item->tmt_golongan }}</td>
                         <td>{{ $item->tmt_bekerja }}</td>
                         @if($pegawai->riwayatJabatan->scan_sk != null)
-                        <td><a href="{{asset('storage/' . $pegawai->riwayatJabatan->scan_sk)}}" target="_blank" class="badge badge-sm badge-danger ml-1"><i class="fas fa-file-pdf"></i> Show</a></td>
+                        <td><a href="{{asset('storage/' . $item->scan_sk)}}" target="_blank" class="badge badge-sm badge-danger ml-1"><i class="fas fa-file-pdf"></i> Show</a></td>
                         @else
                         <td>
                             <div class="badge badge-warning">Tidak Ada</div>

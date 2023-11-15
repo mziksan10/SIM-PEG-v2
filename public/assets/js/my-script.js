@@ -239,7 +239,17 @@ function nipEdit() {
     document.getElementById("nip").removeAttribute('readonly');
 }
 
-// Enable NIP Input
-function tmtJabatanEdit() {
+// Enable Tanggal Masuk 
+function tanggalMasukEdit() {
     document.getElementById("tanggal_masuk").removeAttribute('readonly');
+}
+
+// Enable Tanggal Masuk 
+function tmtGolonganEdit() {
+    document.getElementById("tmt_golongan").removeAttribute('readonly');
+}
+
+// Enable Tanggal Masuk 
+function tmtBekerjaEdit() {
+    document.getElementById("tmt_bekerja").removeAttribute('readonly');
 }

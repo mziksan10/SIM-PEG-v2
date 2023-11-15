@@ -58,6 +58,7 @@
                         <div class="form-group col-12">
                             <label>Upload Scan SK</label>
                             <input type="file" class="form-control @error('scan_sk') is-invalid @enderror" name="scan_sk" value="{{ old('scan_sk') }}">
+                            <small><i>*File harus bertipe PDF berukuran maks. 1 mb.</i></small>
                             @error('scan_sk')
                             <div class="invalid-feedback ml-3">{{ $message }}</div>
                             @enderror

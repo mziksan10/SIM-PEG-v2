@@ -41,43 +41,46 @@
                             <form action="{{ route('updatePegawai', $pegawai->id) }}" method="POST" enctype="multipart/form-data">
                                 @method('put')
                                 @csrf
-                                <div class="form-row">
-                                    <div class="col-xl-2 col-md-6">
-                                        <div class="img-thumbnail modal-dialog-centered justify-content-center bg-light mb-3">
-                                            <div style="max-height: 500px; max-width: 250px; overflow: hidden;">
-                                                @if($pegawai->foto)
-                                                <img src="{{ asset('storage/' . $pegawai->foto) }}" class="img-preview mb-2" style="height: 300px; width: 250px; overflow: hidden;">
-                                                @elseif(!$pegawai->foto)
-                                                <img src="{{ asset('assets/img') }}/user_default.png" class="img-preview mb-2" style="height: 300px; width: 250px; overflow: hidden;">
-                                                @else
-                                                <img class="img-preview mb-2" style="height: 300px; width: 250px; overflow: hidden;">
-                                                @endif
-                                                <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" id="foto" onchange="previewImage()">
-                                            </div>
+                                <div class="form-row mb-3">
+                                    <div class="col-lg-2 col-md-12 d-flex">
+                                        <div class="img-thumbnail">
+                                            @if($pegawai->foto)
+                                            <img src="{{ asset('storage/' . $pegawai->foto) }}" class="img-preview mb-2 mx-auto" style="height: 165px; width: 128px;">
+                                            @elseif(!$pegawai->foto)
+                                            <img src="{{ asset('assets/img') }}/user_default.png" class="img-preview mb-2 mx-auto" style="height: 165px; width: 128px;">
+                                            @else
+                                            <img class="img-preview mb-2" style="height: 165px; width: 128px;">
+                                            @endif
                                         </div>
-                                        @error('foto')
-                                        <div class="invalid-feedback ml-3">{{ $message }}</div>
-                                        @enderror
+                                    </div>
+                                    <div class="col-lg-4 col-md-12 d-inline">
+                                        <div class="form-group">
+                                            <label>NIP</label>
+                                            <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ old('nip', $pegawai->nip) }}" disabled>
+                                            @error('nip')
+                                            <div class="invalid-feedback ml-3">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Pas Foto 2x3</label>
+                                            <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto" id="foto" onchange="previewImage()">
+                                            <small><i>*File harus bertipe JPG/PNG berukuran maks. 1 mb.</i></small>
+                                            @error('foto')
+                                            <div class="invalid-feedback ml-3">{{ $message }}</div>
+                                            @enderror
+                                        </div>
                                     </div>
                                 </div>
+                                <hr>
                                 <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label>NIP</label>
-                                        <input type="text" class="form-control @error('nip') is-invalid @enderror" name="nip" value="{{ old('nip', $pegawai->nip) }}" disabled>
-                                        @error('nip')
-                                        <div class="invalid-feedback ml-3">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-lg-4 col-md-12">
                                         <label>NIK</label>
                                         <input type="text" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik', $pegawai->nik) }}">
                                         @error('nik')
                                         <div class="invalid-feedback ml-3">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-8">
+                                    <div class="form-group col-lg-8 col-md-12">
                                         <label>Nama Lengkap</label>
                                         <input type="text" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama', $pegawai->nama) }}" style="text-transform:uppercase" oninput="this.value = this.value.toUpperCase()">
                                         @error('nama')
@@ -86,7 +89,7 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-lg-3 col-md-12">
                                         <label>Tempat Lahir</label>
                                         <select name="tempat_lahir" class="select2 form-control @error('tempat_lahir') is-invalid @enderror">
                                             <option value="" selected>Pilih..</option>
@@ -102,14 +105,14 @@
                                         <div class="invalid-feedback ml-3">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-3">
+                                    <div class="form-group col-lg-3 col-md-12">
                                         <label>Tanggal Lahir</label>
                                         <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" name="tanggal_lahir" value="{{ old('tanggal_lahir', $pegawai->tanggal_lahir) }}">
                                         @error('tanggal_lahir')
                                         <div class="invalid-feedback ml-3">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-2">
+                                    <div class="form-group col-lg-3 col-md-12">
                                         <label>Jenis Kelamin</label>
                                         <select name="jenis_kelamin" class="form-control @error('jenis_kelamin') is-invalid @enderror">
                                             @foreach($jenisKelamin as $item)
@@ -124,7 +127,7 @@
                                         <div class="invalid-feedback ml-3">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-2">
+                                    <div class="form-group col-lg-3 col-md-12">
                                         <label>Status Pernikahan</label>
                                         <select name="status_pernikahan" class="form-control @error('status_pernikahan') is-invalid @enderror">
                                             @foreach($statusPernikahan as $item)
@@ -141,15 +144,15 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-lg-6 col-md-8">
+                                    <div class="form-group col-lg-9 col-md-12">
                                         <label>Alamat</label>
                                         <input type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{ old('alamat', $pegawai->alamat) }}" style="text-transform:uppercase" oninput="this.value = this.value.toUpperCase()">
                                         @error('alamat')
                                         <div class="invalid-feedback ml-3">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-lg-2 col-md-4">
-                                        <label>Status Kepemilikan Rumah (Alamat)</label>
+                                    <div class="form-group col-lg-3 col-md-12">
+                                        <label>Status Kepemilikan Rumah</label>
                                         <select id="status_kepemilikan_rumah" name="status_kepemilikan_rumah" class="form-control @error('status_kepemilikan_rumah') is-invalid @enderror">
                                             @foreach($statusKepemilikanRumah as $item)
                                             @if(old('status_kepemilikan_rumah', $pegawai->status_kepemilikan_rumah) == $item)
@@ -165,7 +168,7 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
-                                    <div class="form-group col-lg-3 col-md-6">
+                                    <div class="form-group col-lg-3 col-md-12">
                                         <label>Provinsi</label>
                                         <select id="provinsi" name="provinsi" class="select2 form-control @error('provinsi') is-invalid @enderror">
                                             <option value="" selected>Pilih..</option>
@@ -181,7 +184,7 @@
                                         <div class="invalid-feedback ml-3">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-lg-3 col-md-6">
+                                    <div class="form-group col-lg-3 col-md-12">
                                         <label>Kabupaten/Kota</label>
                                         <select id="kab_kota" name="kab_kota" class="select2 form-control @error('kab_kota') is-invalid @enderror">
                                             @foreach($kota as $item)
@@ -194,7 +197,7 @@
                                         <div class="invalid-feedback ml-3">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-lg-2 col-md-4">
+                                    <div class="form-group col-lg-3 col-md-12">
                                         <label>Kecamatan</label>
                                         <select id="kecamatan" name="kecamatan" class="select2 form-control @error('kecamatan') is-invalid @enderror">
                                             @foreach($kecamatan as $item)
@@ -207,7 +210,7 @@
                                         <div class="invalid-feedback ml-3">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-lg-2 col-md-4">
+                                    <div class="form-group col-lg-3 col-md-12">
                                         <label>Desa</label>
                                         <select id="desa" name="desa" class="select2 form-control @error('desa') is-invalid @enderror">
                                             @foreach($desa as $item)
@@ -220,7 +223,9 @@
                                         <div class="invalid-feedback ml-3">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-lg-2 col-md-4">
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-lg-3 col-md-12">
                                         <label>Kode Pos</label>
                                         <input type="number" min="0" class="form-control @error('kode_pos') is-invalid @enderror" name="kode_pos" value="{{ old('kode_pos', $pegawai->kode_pos) }}">
                                         @error('kode_pos')
@@ -228,16 +233,14 @@
                                         </div>
                                         @enderror
                                     </div>
-                                </div>
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-lg-3 col-md-12">
                                         <label>No. HP</label>
                                         <input type="text" class="form-control @error('no_hp') is-invalid @enderror" name="no_hp" value="{{ old('no_hp', $pegawai->no_hp) }}">
                                         @error('no_hp')
                                         <div class="invalid-feedback ml-3">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="form-group col-md-4">
+                                    <div class="form-group col-lg-3 col-md-12">
                                         <label>Email</label>
                                         <input type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $pegawai->email) }}" style="text-transform:lower">
                                         @error('email')
@@ -246,6 +249,7 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <hr>
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
                                         <label>Tanggal Masuk</label>
@@ -254,15 +258,14 @@
                                         <div class="invalid-feedback ml-3">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    @if($pegawai->status == 2)
                                     <div class="form-group col-md-3">
                                         <label>Status</label>
                                         <select name="status" class="form-control @error('status') is-invalid @enderror">
                                             @foreach($status as $item)
                                             @if(old('status', $pegawai->status) == $item)
-                                            <option value="{{ $item }}" selected>@if($item == 1) Tetap @elseif($item == 2) Kontrak @elseif($item == 0) Non Aktif @endif</option>
+                                            <option value="{{ $item }}" selected>@if($item == 1) Karyawan Tetap @elseif($item == 2) Karyawan Kontrak @elseif($item == 3) Karyawan Magang @elseif($item == 0) Non Aktif @endif</option>
                                             @else
-                                            <option value="{{ $item }}">@if($item == 1) Tetap @elseif($item == 2) Kontrak @elseif($item == 0) Non Aktif @endif</option>
+                                            <option value="{{ $item }}">@if($item == 1) Karyawan Tetap @elseif($item == 2) Karyawan Kontrak @elseif($item == 3) Karyawan Magang @elseif($item == 0) Non Aktif @endif</option>
                                             @endif
                                             @endforeach
                                         </select>
@@ -270,9 +273,6 @@
                                         <div class="invalid-feedback ml-3">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    @else
-                                    <input type="hidden" name="status" value="{{$pegawai->status}}">
-                                    @endif
                                 </div>
                         </div>
                     </div>
@@ -287,7 +287,7 @@
                         </div>
                         <div class="card-body">
                             <div class="form-row">
-                                <div class="form-group col-lg-6 col-md-6">
+                                <div class="form-group col-lg-8 col-md-12">
                                     <label>Nama Instansi</label>
                                     <input type="text" class="form-control @error('instansi_sebelumnya') is-invalid @enderror" name="instansi_sebelumnya" value="{{ old('instansi_sebelumnya', $pegawai->instansi_sebelumnya) }}" style="text-transform:uppercase" oninput="this.value = this.value.toUpperCase()">
                                     @error('instansi_sebelumnya')
@@ -296,21 +296,21 @@
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="form-group col-lg-3 col-md-4">
+                                <div class="form-group col-lg-3 col-md-12">
                                     <label>Pekerjaan</label>
                                     <input type="text" class="form-control @error('pekerjaan_sebelumnya') is-invalid @enderror" name="pekerjaan_sebelumnya" value="{{ old('pekerjaan_sebelumnya', $pegawai->pekerjaan_sebelumnya) }}" style="text-transform:uppercase" oninput="this.value = this.value.toUpperCase()">
                                     @error('pekerjaan_sebelumnya')
                                     <div class="invalid-feedback ml-3">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group col-lg-3 col-md-4">
+                                <div class="form-group col-lg-3 col-md-12">
                                     <label>Jabatan</label>
                                     <input type="text" class="form-control @error('jabatan_sebelumnya') is-invalid @enderror" name="jabatan_sebelumnya" value="{{ old('jabatan_sebelumnya', $pegawai->jabatan_sebelumnya) }}" style="text-transform:uppercase" oninput="this.value = this.value.toUpperCase()">
                                     @error('jabatan_sebelumnya')
                                     <div class="invalid-feedback ml-3">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="form-group col-lg-2 col-md-2">
+                                <div class="form-group col-lg-2 col-md-12">
                                     <label>Masa Jabatan</label>
                                     <div class="input-group">
                                         <input type="number" class="form-control @error('masa_jabatan_sebelumnya') is-invalid @enderror" name="masa_jabatan_sebelumnya" value="{{ old('masa_jabatan_sebelumnya', $pegawai->masa_jabatan_sebelumnya) }}">

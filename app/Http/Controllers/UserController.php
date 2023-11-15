@@ -66,6 +66,7 @@ class UserController extends Controller
             'password' => 'required|max:255|min:5',
             'role' => 'required'
         ]);
+        $validatedData['username'] = $request->username;
         $validatedData['pegawai_id'] = $cariData[0]->id;
         $validatedData['email'] = $cariData[0]->email;
         $validatedData['role'] = $request->role;

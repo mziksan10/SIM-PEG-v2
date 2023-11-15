@@ -59,6 +59,7 @@
                         <div class="form-group col-md-12">
                             <label>Upload Scan Ijazah</label>
                             <input type="file" class="form-control @error('scan_ijazah') is-invalid @enderror" name="scan_ijazah">
+                            <small><i>*File harus bertipe PDF berukuran maks. 1 mb.</i></small>
                             @error('scan_ijazah')
                             <div class="invalid-feedback ml-3">{{ $message }}</div>
                             @enderror

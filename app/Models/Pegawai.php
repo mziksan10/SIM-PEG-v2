@@ -16,7 +16,7 @@ class Pegawai extends Model
     protected $guarded = ['id'];
 
     // Static jenis status
-    private static $status = ['1', '2', '0'];
+    private static $status = ['1', '2', '3', '0'];
     public static function status()
     {
         return self::$status;
@@ -64,7 +64,7 @@ class Pegawai extends Model
 
     public function riwayatJabatan()
     {
-        return $this->hasOne(RiwayatJabatan::class)->latestOfMany();
+        return $this->hasOne(RiwayatJabatan::class)->latestOfMany('tmt_golongan');
     }
 
     public function riwayatJabatan_()
@@ -74,7 +74,7 @@ class Pegawai extends Model
 
     public function riwayatPendidikan()
     {
-        return $this->hasOne(RiwayatPendidikan::class)->latestOfMany();
+        return $this->hasOne(RiwayatPendidikan::class)->latestOfMany('tahun_lulus');
     }
 
     public function riwayatPendidikan_()

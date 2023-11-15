@@ -14,6 +14,7 @@ use App\Models\Provinsi;
 use App\Models\Kota;
 use App\Models\Kecamatan;
 use App\Models\Desa;
+use App\Models\User;
 use PDF;
 use Illuminate\Http\Request;
 use App\Exports\PegawaisExport;
@@ -22,6 +23,7 @@ use Illuminate\Routing\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use DateTime;
+use Illuminate\Support\Facades\Hash;
 
 class PegawaiController extends Controller
 {
@@ -119,9 +121,9 @@ class PegawaiController extends Controller
 
     public function createPegawaiMagang()
     {
-        $selectNIP = Pegawai::select('nip')->where('status', '2')->latest('tanggal_masuk')->first();
+        $selectNIP = Pegawai::select('nip')->where('status', '3')->latest('tanggal_masuk')->first();
         if ($selectNIP == null) {
-            $createNIP = '130041' . date('dmy') . '2' . '001';
+            $createNIP = '130041' . date('dmy') . '3' . '001';
         } elseif ($selectNIP->get()) {
             $createNIP = '130041' . date('dmy') . substr($selectNIP->nip, -4) + 1;
         }
@@ -153,7 +155,7 @@ class PegawaiController extends Controller
     {
         // VALIDASI DATA PRIBADI
         $validatedData = $request->validate([
-            'nik' => 'required|max:16',
+            'nik' => 'required|max:16|unique:pegawais',
             'nama' => 'required|max:255',
             'tempat_lahir' => 'required|max:60',
             'tanggal_lahir' => 'required',
@@ -222,11 +224,25 @@ class PegawaiController extends Controller
                         $status = "Kontrak";
                     }
                     $validatedDataJabatan['golongan_id'] = Golongan::where('jenjang', $request->jenjang)->where('status', $status)->pluck('id')->first();
-                    $validatedDataJabatan['tmt_golongan'] = date_create()->format('Y-m-d');
-                    $validatedDataJabatan['tmt_bekerja'] = date_create()->format('Y-m-d');
+                    $validatedDataJabatan['tmt_golongan'] = $request->tmt_golongan;
+                    $validatedDataJabatan['tmt_bekerja'] = $request->tmt_bekerja;
                     $validatedDataJabatan['pegawai_id'] = $pegawaiId[0]->id;
                     RiwayatJabatan::create($validatedDataJabatan);
-                    return redirect(route('pegawai'))->with('success', 'Data berhasil ditambahkan!');
+                    try {
+                        // TAMBAH USER
+                        $pegawaiId = Pegawai::select('id', 'nip', 'email')->where('nip', $request->nip)->get();
+                        $validatedDataUser = [];
+                        $validatedDataUser['username'] = $pegawaiId[0]->nip;
+                        $validatedDataUser['pegawai_id'] = $pegawaiId[0]->id;
+                        $validatedDataUser['email'] = $pegawaiId[0]->email;
+                        $validatedDataUser['role'] = 'user';
+                        $validatedDataUser['password'] = Hash::make($pegawaiId[0]->nip);
+                        User::create($validatedDataUser);
+                        return redirect(route('pegawai'))->with('success', 'Data berhasil ditambahkan!');
+                    } catch (\Exception $e) {
+                        return redirect()->back()
+                            ->with('failed', 'Data tidak berhasil ditambahkan!');
+                    }
                 } catch (\Exception $e) {
                     return redirect()->back()
                         ->with('failed', 'Data tidak berhasil ditambahkan!');
@@ -417,10 +433,28 @@ class PegawaiController extends Controller
             'tanggal_masuk' => 'required',
         ];
         $validatedData = $request->validate($rules);
-        if ($request->status == 2) {
+        if ($request->status == 1) {
             $selectNIP = Pegawai::select('nip')->where('status', '1')->latest('tanggal_masuk')->first();
             if ($selectNIP == null) {
                 $createNIP = '130041' . date('dmy') . '1' . '001';
+            } else {
+                $createNIP = '130041' . date('dmy') . substr($selectNIP->nip, -4) + 1;
+            }
+            $validatedData['nip'] = $createNIP;
+            $validatedData['status'] = $request->status;
+        } elseif ($request->status == 2) {
+            $selectNIP = Pegawai::select('nip')->where('status', '2')->latest('tanggal_masuk')->first();
+            if ($selectNIP == null) {
+                $createNIP = '130041' . date('dmy') . '2' . '001';
+            } else {
+                $createNIP = '130041' . date('dmy') . substr($selectNIP->nip, -4) + 1;
+            }
+            $validatedData['nip'] = $createNIP;
+            $validatedData['status'] = $request->status;
+        } elseif ($request->status == 3) {
+            $selectNIP = Pegawai::select('nip')->where('status', '2')->latest('tanggal_masuk')->first();
+            if ($selectNIP == null) {
+                $createNIP = '130041' . date('dmy') . '2' . '001';
             } else {
                 $createNIP = '130041' . date('dmy') . substr($selectNIP->nip, -4) + 1;
             }
@@ -483,7 +517,7 @@ class PegawaiController extends Controller
         } elseif ($request->status == 2 | $request->status == 3) {
             $status = "Kontrak";
         }
-        $validatedData['golongan_id'] = Golongan::where('jenjang', $request->jenjang)->where('status', $status)->pluck('id')->first();
+        // $validatedData['golongan_id'] = Golongan::where('jenjang', $request->jenjang)->where('status', $status)->pluck('id')->first();
         RiwayatJabatan::where('id', $riwayatJabatan->id)->update($validatedData);
         return back()->with('success', 'Data berhasil diubah!');
     }
